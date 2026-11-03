@@ -1,0 +1,66 @@
+[build-system]
+requires = ["setuptools>=77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sy4py"
+version = "0.1.0"
+description = "Read and query SunnyNetV4 .sy4 capture files (HTTP / WebSocket / TCP / UDP)"
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "sy4py contributors" }]
+keywords = [
+  "sunnynet",
+  "sy4",
+  "capture",
+  "http",
+  "websocket",
+  "traffic-analysis",
+  "forensics",
+  "cli",
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Internet :: WWW/HTTP",
+  "Topic :: Security",
+  "Topic :: Utilities",
+  "Typing :: Typed",
+]
+dependencies = ["brotli>=1.0.9"]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "build>=1.0", "twine>=4.0"]
+
+[project.scripts]
+sy4py = "sy4py.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/YOURNAME/sy4py"
+Repository = "https://github.com/YOURNAME/sy4py"
+Issues = "https://github.com/YOURNAME/sy4py/issues"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+sy4py = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+pythonpath = ["src"]

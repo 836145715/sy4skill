@@ -1,0 +1,9 @@
+# Normalize line endings so Windows and Unix checkouts agree.
+* text=auto eol=lf
+
+# Binary / capture files must never be converted.
+*.sy4 binary
+*.png binary
+*.jpg binary
+*.gz binary
+*.whl binary
