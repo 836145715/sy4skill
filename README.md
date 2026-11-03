@@ -1,6 +1,6 @@
 # sy4py
 
-[![CI](https://github.com/YOURNAME/sy4py/actions/workflows/ci.yml/badge.svg)](https://github.com/YOURNAME/sy4py/actions/workflows/ci.yml)
+[![CI](https://github.com/836145715/sy4skill/actions/workflows/ci.yml/badge.svg)](https://github.com/836145715/sy4skill/actions/workflows/ci.yml)
 [![PyPI](https://img.shields.io/pypi/v/sy4py.svg)](https://pypi.org/project/sy4py/)
 [![Python](https://img.shields.io/pypi/pyversions/sy4py.svg)](https://pypi.org/project/sy4py/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
@@ -19,14 +19,17 @@
 ## 安装
 
 ```powershell
-# 作为 Agent Skill：直接克隆进 skills 目录
-git clone https://github.com/YOURNAME/sy4py.git $env:USERPROFILE\.dsh\skills\sy4py
+# 作为 Agent Skill：克隆进 skills 目录，并把目录名指定为 sy4py（技能名）
+git clone https://github.com/836145715/sy4skill.git $env:USERPROFILE\.dsh\skills\sy4py
 ```
 
 ```bash
 # Linux / macOS
-git clone https://github.com/YOURNAME/sy4py.git ~/.dsh/skills/sy4py
+git clone https://github.com/836145715/sy4skill.git ~/.dsh/skills/sy4py
 ```
+
+> 仓库叫 `sy4skill`，技能名是 `sy4py`（`SKILL.md` 的 `name`）。
+> 克隆时加上目标目录 `sy4py`，目录名就与技能名一致。
 
 也可以当普通 Python 包安装（可选）：
 
@@ -114,12 +117,10 @@ python -m pytest -q
 SY4_SAMPLES=/path/to/captures python -m pytest tests/test_samples.py -q
 ```
 
-## 发布前
+## 发布
 
-1. 把 `README.md`、`pyproject.toml`、`CONTRIBUTING.md` 里的 `YOURNAME` 换成 GitHub 用户名。
-2. 替换 `LICENSE` 的版权人。
-3. `git init`（已初始化可跳过）后 `git remote add origin https://github.com/YOURNAME/sy4py.git && git push -u origin main`。
-4. 需要发布 PyPI 时：`python -m build && twine upload dist/*`。
+- 技能包：`python scripts/build_skill.py` → `dist/sy4py.skill`，可作为 release 附件。
+- PyPI：`python -m build && twine upload dist/*`。
 
 ## 安全提示
 

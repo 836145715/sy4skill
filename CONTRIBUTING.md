@@ -5,7 +5,7 @@ Thanks for taking a look at `sy4py`!
 ## 开发环境
 
 ```bash
-git clone https://github.com/YOURNAME/sy4py.git
+git clone https://github.com/836145715/sy4skill.git sy4py
 cd sy4py
 python -m pip install --upgrade pip
 python -m pip install -e ".[dev]"
