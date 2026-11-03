@@ -182,6 +182,6 @@ int    websocketType
 ## 9. 参考实现
 
 - Go：SunnyNetTools 仓库 `sy4/` 包与 `cmd/sy4`
-- Python：本仓库 `src/sy4py/decoder.py`、`src/sy4py/encoder.py`
+- Python：本仓库 `scripts/sy4py/decoder.py`、`scripts/sy4py/encoder.py`
 
 两边的字段顺序、限制值和统计口径保持一致；`sy4py export` 产物可直接被 Go 版读取。

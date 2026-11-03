@@ -5,7 +5,7 @@ from __future__ import annotations
 import os
 from typing import List, Tuple
 
-from . import _brotli
+from . import brotli_support
 from .errors import DecodeError
 from .model import (
     TYPE_HTTP,
@@ -72,9 +72,9 @@ def decode_bytes(data: bytes) -> Archive:
         header_count, records = _decode_stream(data)
         return Archive(header_count=header_count, records=records, compressed=False)
 
-    if _brotli.available():
+    if brotli_support.available():
         try:
-            raw = _brotli.decompress(data)
+            raw = brotli_support.decompress(data)
         except Exception:  # noqa: BLE001 - any backend failure means "not brotli"
             raw = None
         if raw is not None:
@@ -88,7 +88,7 @@ def decode_bytes(data: bytes) -> Archive:
                         header_count=header_count, records=records, compressed=True
                     )
     else:
-        raise DecodeError(_brotli.missing_hint())
+        raise DecodeError(brotli_support.missing_hint())
 
     header_count, records = _decode_stream(data)
     return Archive(header_count=header_count, records=records, compressed=False)

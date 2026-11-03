@@ -7,15 +7,18 @@ Thanks for taking a look at `sy4py`!
 ```bash
 git clone https://github.com/YOURNAME/sy4py.git
 cd sy4py
+python -m pip install --upgrade pip
 python -m pip install -e ".[dev]"
 python -m pytest -q
 ```
+
+也可以完全不安装，直接改完就跑：`python scripts/sy4py info <file>`。
 
 ## 代码约定
 
 - 只支持 Python 3.9+；不要使用 `match`、`X | None` 运行时注解等 3.10 语法
   （文件顶部可以 `from __future__ import annotations`）。
-- 解析层（`decoder.py` / `encoder.py`）的字段顺序必须与 `docs/FORMAT.md` 一致；
+- 解析层（`decoder.py` / `encoder.py`）的字段顺序必须与 `references/format.md` 一致；
   改字段顺序时同步修改测试与文档。
 - 新增 CLI 参数时，`cli.py` 的 `BOOL_FLAGS` / `VALUE_FLAGS` 与 `USAGE` 一起更新。
 - 不提交真实抓包文件；本地验证用环境变量指向样本目录：

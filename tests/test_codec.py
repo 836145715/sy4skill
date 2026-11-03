@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pytest
 
-from sy4py import _brotli
+from sy4py import brotli_support
 from sy4py.decoder import decode_bytes, looks_raw, open_file
 from sy4py.encoder import encode_archive, encode_records, write_file
 from sy4py.errors import DecodeError
@@ -39,7 +39,7 @@ def test_roundtrip_preserves_every_field(records, archive_bytes):
 
 
 def test_compressed_roundtrip(records, compressed_bytes):
-    if not _brotli.available():
+    if not brotli_support.available():
         pytest.skip("brotli backend not installed")
     assert not looks_raw(compressed_bytes)
     archive = decode_bytes(compressed_bytes)

@@ -52,10 +52,10 @@ Repository = "https://github.com/YOURNAME/sy4py"
 Issues = "https://github.com/YOURNAME/sy4py/issues"
 
 [tool.setuptools]
-package-dir = { "" = "src" }
+package-dir = { "" = "scripts" }
 
 [tool.setuptools.packages.find]
-where = ["src"]
+where = ["scripts"]
 
 [tool.setuptools.package-data]
 sy4py = ["py.typed"]
@@ -63,4 +63,4 @@ sy4py = ["py.typed"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-ra"
-pythonpath = ["src"]
+pythonpath = ["scripts"]

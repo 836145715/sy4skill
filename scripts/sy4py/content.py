@@ -6,7 +6,7 @@ import gzip
 import zlib
 from typing import Optional, Tuple
 
-from . import _brotli
+from . import brotli_support
 
 #: Encodings tried in order when guessing how to render a body as text.
 TEXT_ENCODINGS = ("utf-8", "gb18030")
@@ -105,7 +105,7 @@ def _decompress_once(data: bytes, name: str) -> Optional[bytes]:
         return None
     if name in ("br", "brotli"):
         try:
-            return _brotli.decompress(data)
+            return brotli_support.decompress(data)
         except Exception:  # noqa: BLE001 - any failure means "not useful"
             return None
     return None

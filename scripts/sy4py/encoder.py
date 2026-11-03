@@ -9,7 +9,7 @@ from __future__ import annotations
 import struct
 from typing import Iterable, List
 
-from . import _brotli
+from . import brotli_support
 from .errors import Sy4Error
 from .model import TYPE_HTTP, TYPE_TCP, TYPE_UDP, Frame, Record
 
@@ -79,7 +79,7 @@ def encode_archive(records: Iterable[Record], compress: bool = True) -> bytes:
     payload = encode_records(records)
     if not compress:
         return payload
-    return _brotli.compress(payload)
+    return brotli_support.compress(payload)
 
 
 def write_file(path: str, records: Iterable[Record], compress: bool = True) -> int:
