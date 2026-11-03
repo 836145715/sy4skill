@@ -100,6 +100,24 @@ def test_expr_quoted_value(loaded):
     assert [r.index for r in query.apply(loaded)] == [1]
 
 
+def test_status_numeric_comparison(loaded):
+    # status is stored as text but ordering operators compare it numerically
+    assert [r.index for r in Query(expr="status>=200").apply(loaded)] == [1]
+    assert [r.index for r in Query(expr="status<200").apply(loaded)] == [2]
+    assert [r.index for r in Query(expr="status<=101").apply(loaded)] == [2]
+    assert Query(expr="status>999").apply(loaded) == []
+
+
+def test_status_numeric_comparison_requires_number():
+    with pytest.raises(QueryError, match="status comparison"):
+        parse_expr("status>=abc")
+
+
+def test_status_text_operators_still_work(loaded):
+    assert [r.index for r in Query(expr="status!=200").apply(loaded)] == [2, 3, 4]
+    assert [r.index for r in Query(expr="status~10").apply(loaded)] == [2]
+
+
 def test_expr_invalid_clause():
     with pytest.raises(QueryError):
         parse_expr("status")

@@ -45,7 +45,9 @@
 Fields: `type method host url path status process client server note user error
 index theology rec sen frames`.
 
-Operators: `=` `!=` `~` `!~` `>` `<` `>=` `<=`.
+Operators: `=` `!=` `~` `!~` `>` `<` `>=` `<=`. On `status` / `code`, the ordering
+operators compare numerically (`status>=400`); records without a numeric status
+never match them.
 
 Whitespace is AND, `or` / `||` is OR, commas OR values.
 

@@ -328,6 +328,8 @@ def clause_predicate(field: str, operator: str, value: str) -> Predicate:
     if field == "path":
         return compare_string(lambda rec: rec.path, operator, value)
     if field in ("status", "code"):
+        if operator in (">", "<", ">=", "<="):
+            return compare_status(operator, value)
         return compare_string(lambda rec: rec.status, operator, value)
     if field == "process":
         return compare_string(lambda rec: rec.process, operator, value)
@@ -411,6 +413,36 @@ def compare_string(
         return not_contains
 
     raise QueryError("string field does not support operator %r" % operator)
+
+
+def compare_status(operator: str, value: str) -> Predicate:
+    """Numeric comparison for HTTP status codes, e.g. ``status>=400``.
+
+    Status is stored as a string, so ``=`` / ``~`` stay textual; ordering
+    operators only match records that actually have a numeric status.
+    """
+
+    try:
+        number = int(value.strip(), 10)
+    except ValueError:
+        raise QueryError("status comparison needs a number, got %r" % value) from None
+    comparisons = {
+        ">": lambda got: got > number,
+        "<": lambda got: got < number,
+        ">=": lambda got: got >= number,
+        "<=": lambda got: got <= number,
+    }
+    compare = comparisons.get(operator)
+    if compare is None:
+        raise QueryError("status does not support operator %r" % operator)
+
+    def check(rec: Record) -> bool:
+        raw = (rec.status or "").strip()
+        if not raw.isdigit():
+            return False
+        return compare(int(raw))
+
+    return check
 
 
 def compare_int(
