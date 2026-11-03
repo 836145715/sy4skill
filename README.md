@@ -185,8 +185,20 @@ URL 凭据参数打码、`export --full` 带正文的 JSONL。
 
 ## 作为 Agent Skill 使用
 
-仓库根目录的 [`SKILL.md`](SKILL.md) 可以直接放进 Agent 的 skills 目录，
-让助手按固定工作流分析 `.sy4`（先 `info`，再 `list --noise`，再 `search` 定位，最后 `get/body`）。
+[`skills/sy4py/`](skills/sy4py) 是按 skill 规范组织的技能包，只包含技能运行需要的文件：
+`SKILL.md`（`name` + `description` frontmatter）和 `references/flags.md`（完整参数表）。
+
+```bash
+# 1. 直接装进 Agent 的 skills 目录
+cp -r skills/sy4py ~/.dsh/skills/                        # Linux / macOS
+Copy-Item -Recurse skills\sy4py $env:USERPROFILE\.dsh\skills\   # Windows
+
+# 2. 或打包成单个 .skill 文件分发
+python scripts/build_skill.py        # 产出 dist/sy4py.skill
+```
+
+技能触发后按固定工作流执行：先 `info`，再 `list --noise`，再 `search` 定位，
+最后 `get` / `body` 取细节，全程遵守脱敏要求。
 
 ## 开发
 
