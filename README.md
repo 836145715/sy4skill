@@ -1,5 +1,6 @@
 # sy4py
 
+[![skills.sh](https://skills.sh/b/836145715/sy4skill)](https://www.skills.sh/836145715/sy4skill)
 [![CI](https://github.com/836145715/sy4skill/actions/workflows/ci.yml/badge.svg)](https://github.com/836145715/sy4skill/actions/workflows/ci.yml)
 [![PyPI](https://img.shields.io/pypi/v/sy4py.svg)](https://pypi.org/project/sy4py/)
 [![Python](https://img.shields.io/pypi/pyversions/sy4py.svg)](https://pypi.org/project/sy4py/)
@@ -18,8 +19,16 @@
 
 ## 安装
 
+用 [skills CLI](https://www.skills.sh/docs/cli) 一条命令装进你的 Agent（Claude Code / Cursor / Codex 等）：
+
+```bash
+npx skills add 836145715/sy4skill
+```
+
+也可以手动装进 `~/.dsh/skills`（DSH 等按目录加载的 Agent）：
+
 ```powershell
-# 作为 Agent Skill：克隆进 skills 目录，并把目录名指定为 sy4py（技能名）
+# Windows：把目录名指定为 sy4py（技能名）
 git clone https://github.com/836145715/sy4skill.git $env:USERPROFILE\.dsh\skills\sy4py
 ```
 
@@ -29,7 +38,7 @@ git clone https://github.com/836145715/sy4skill.git ~/.dsh/skills/sy4py
 ```
 
 > 仓库叫 `sy4skill`，技能名是 `sy4py`（`SKILL.md` 的 `name`）。
-> 克隆时加上目标目录 `sy4py`，目录名就与技能名一致。
+> 手动克隆时加上目标目录 `sy4py`，目录名就与技能名一致。
 
 也可以当普通 Python 包安装（可选）：
 
